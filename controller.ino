@@ -5,7 +5,7 @@ Servo sparkMax;
 const int oscillationModeInputPin = 12;
 const int continuousModeInputPin = 11;
 const int PWMOutputPin = 9;
-const int speedInputPin = A0;
+const int speedInputPin = A1;
 const int ledPin = LED_BUILTIN;
 
 enum mode {
@@ -16,12 +16,14 @@ enum direction {
   FORWARD, REVERSE };
 direction currentDirection = FORWARD;
 
-int speedOutput = 1500;
+const int stop = 1500;
+const int maxSpeedPercent = 5;
+const unsigned long reversalMillis = 2000;
+
+int speedOutput = stop;
 int blinkState = LOW;
 unsigned long lastReversalMillis = 0;
 unsigned long lastBlinkMillis = 0;
-
-const unsigned long reversalMillis = 2000;
 
 void setup() { 
   sparkMax.attach(PWMOutputPin);
@@ -48,9 +50,9 @@ void loop() {
   
   int speedInput = analogRead(speedInputPin);
 
-  // set the LED blink interval to the range [0-1] seconds
-  // and proportional to the speed input
-  int blinkMillis = map(speedInput, 0, 1023, 0, 1000);
+  // set the LED blink interval to the range [1-2] seconds
+  // and inversely proportional to the speed input
+  int blinkMillis = map(speedInput, 0, 1023, 2000, 1000);
 
   // change the LED state if an interval has passed
   if (currentMillis - lastBlinkMillis >= blinkMillis) {
@@ -76,7 +78,7 @@ void loop() {
   switch (currentMode) {
     case OFF: {
       digitalWrite(ledPin, LOW);
-      speedOutput = 1500;
+      speedOutput = stop;
     }
     break;
 
@@ -101,13 +103,15 @@ void loop() {
 }
 
 int getSpeed(int input, direction dir) {
+  int maxSpeed = (maxSpeedPercent * 1000 / 100) + stop;
+
   // map the input value to the positive output range [1500-2000]
-  int speed = map(input, 0, 1023, 1500, 2000);
+  int speed = map(input, 0, 1023, stop, maxSpeed);
 
   // move the output to the negative range [1000-1500] if reversing
   if (dir == FORWARD) {
     return speed;
   } else {
-    return 3000 - speed;
+    return stop + stop - speed;
   }
 }
