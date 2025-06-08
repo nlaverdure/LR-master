@@ -17,7 +17,7 @@ enum direction {
 direction currentDirection = FORWARD;
 
 const int stop = 1500;
-const int maxSpeedPercent = 5;
+const int maxSpeedPercent = 15;
 const unsigned long reversalMillis = 2000;
 
 int speedOutput = stop;
