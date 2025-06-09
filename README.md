@@ -1,4 +1,4 @@
-# Spark L&R Master
+# Brushless L&R Master
 Rebuilding a vintage L&R Master precision watch cleaning machine with modern brushless motor controls
 
 ## Components
