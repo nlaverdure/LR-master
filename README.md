@@ -1,7 +1,7 @@
 # Brushless L&R Master
 Rebuilding a vintage L&R Master precision watch cleaning machine with modern brushless motor controls
 
-https://github.com/user-attachments/assets/e9d89cc1-c416-4a9f-8257-1010a5acf433
+https://github.com/user-attachments/assets/d17b6613-2972-4438-96e9-239b7f4856e6
 
 ## Components
 * L&R Master precision watch cleaning machine
