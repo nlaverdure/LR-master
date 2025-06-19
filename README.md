@@ -1,6 +1,8 @@
 # Brushless L&R Master
 Rebuilding a vintage L&R Master precision watch cleaning machine with modern brushless motor controls
 
+https://github.com/user-attachments/assets/e9d89cc1-c416-4a9f-8257-1010a5acf433
+
 ## Components
 * L&R Master precision watch cleaning machine
 * Adafruit [Pro Trinket 5V](https://learn.adafruit.com/introducing-pro-trinket)
